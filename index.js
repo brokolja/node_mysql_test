@@ -23,7 +23,7 @@ app.get('/', function (req, res) {
     console.log('connected as id ' + connection.threadId);
 
     res.set('Content-Type', 'text/html');
-    res.send(new Buffer('<html><head><title>SHIPY - Hello World</title></head><body><p>connected as id ' + connection.threadId +'</p></body></html>'));
+    res.send(new Buffer('<html><head><title>Node Mysql Test</title></head><body><p>connected as id ' + connection.threadId +'</p></body></html>'));
     
     connection.release();
   });
