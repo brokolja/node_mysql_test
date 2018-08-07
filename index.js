@@ -11,7 +11,7 @@ var pool  = mysql.createPool({
   database : 'test'
 });
 
-// Use: ?nocache=true for testing...
+// Behind nginx proxy use: ?nocache=true for testing...
 
 app.get('/', function (req, res) {
 
