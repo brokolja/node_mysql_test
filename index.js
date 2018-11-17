@@ -14,17 +14,15 @@ var pool  = mysql.createPool({
 // Behind nginx proxy use: ?nocache=true for testing...
 
 app.get('/', function (req, res) {
-
+  res.set('Content-Type', 'text/html');
   pool.getConnection(function(err, connection) {
     if (err) {
       console.error('error connecting: ' + err.stack);
-    }
-
-    console.log('connected as id ' + connection.threadId);
-
-    res.set('Content-Type', 'text/html');
-    res.send(new Buffer('<html><head><title>Node Mysql Test</title></head><body><p>connected as id ' + connection.threadId +'</p></body></html>'));
-    
+      res.send(new Buffer('<html><head><title>Node Mysql Test</title></head><body><p>' + JSON.stringify(err.stack) +'</p></body></html>'));
+    } else {
+      console.log('connected as id ' + connection.threadId);
+      res.send(new Buffer('<html><head><title>Node Mysql Test</title></head><body><p>connected as id ' + connection.threadId +'</p></body></html>'));
+    }    
     connection.release();
   });
 });
