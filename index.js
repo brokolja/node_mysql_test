@@ -5,10 +5,10 @@ var app = express();
 
 var pool  = mysql.createPool({
   connectionLimit : 10,
-  host     : 'mysql1',
-  user     : 'test',
-  password : 'test',
-  database : 'test'
+  host     : process.env.MYSQL_HOST,
+  user     : process.env.MYSQL_USER,
+  password : process.env.MYSQL_PASSWORD,
+  database : process.env.MYSQL_DATABASE
 });
 
 // Behind nginx proxy use: ?nocache=true for testing...
